@@ -31,6 +31,43 @@
   let frame=0,measureFrame=0,layout=null,lastProgress=-1,lastSection=-1,lastStep=-1,nearBook=false;
   const pageProgress=pages.map(()=>-1);
   const absoluteTop=el=>el.getBoundingClientRect().top+scrollY;
+  const hingeTrigger=document.createElement('span');
+  hingeTrigger.className='book-hinge-trigger';hingeTrigger.setAttribute('aria-hidden','true');stage.prepend(hingeTrigger);
+  let hingeObserver=null,hingeAnimations=[],hingeKey='',hingeClosed=false;
+  function setHinge(closed,instant=false){
+    if(!instant&&closed===hingeClosed)return;
+    hingeClosed=closed;stage.dataset.closed=String(closed);
+    hingeAnimations.forEach(animation=>{
+      if(instant){animation.pause();animation.currentTime=closed?560:0;}
+      else {animation.playbackRate=closed?1:-1;animation.play();}
+    });
+  }
+  function setupHinge(){
+    const enabled=lightBook.matches&&!reduced.matches;
+    const key=[enabled,layout.upperHeight,layout.top,layout.stageTop].join(':');
+    if(key===hingeKey)return;
+    hingeKey=key;hingeObserver?.disconnect();hingeAnimations.forEach(a=>a.cancel());hingeAnimations=[];
+    hero.classList.toggle('touch-hinge',enabled);
+    [book,upper,front,back].forEach(el=>el.style.removeProperty('transform'));
+    if(!enabled)return;
+    // One compositor animation per fold, rather than changing three large
+    // surfaces on every touch-scroll frame. Reverse the same animation on return.
+    const settings={duration:560,fill:'both',easing:'cubic-bezier(.25,.65,.3,1)'};
+    hingeAnimations=[
+      book.animate([{transform:'translate3d(0,0,0)'},{transform:`translate3d(0,${-layout.upperHeight}px,0)`}],settings),
+      front.animate([{transform:'scaleY(1)',offset:0},{transform:'scaleY(0)',offset:.5},{transform:'scaleY(0)',offset:1}],settings),
+      back.animate([{transform:'scaleY(0)',offset:0},{transform:'scaleY(0)',offset:.5},{transform:'scaleY(1)',offset:1}],settings)
+    ];
+    const triggerTop=150-layout.top;
+    hingeTrigger.style.top=triggerTop+'px';
+    setHinge(scrollY>layout.stageTop+triggerTop,true);
+    hingeObserver=new IntersectionObserver(entries=>{
+      const entry=entries[0];
+      const outside=scrollY>layout.heroEnd+layout.viewport;
+      setHinge(entry.boundingClientRect.top<0,outside);
+    },{threshold:0});
+    hingeObserver.observe(hingeTrigger);
+  }
 
   function measure(){
     measureFrame=0;
@@ -49,6 +86,7 @@
       sectionTops:sections.map(absoluteTop),pageTops:anchors.map(absoluteTop),pageHeights:pages.map(p=>p.offsetHeight),
       storyStart:absoluteTop(story),storyEnd:absoluteTop(story)+story.offsetHeight,
       max:Math.max(1,document.documentElement.scrollHeight-viewport)};
+    setupHinge();
     lastProgress=-1;pageProgress.fill(-1);schedule();
   }
   function requestMeasure(){if(!measureFrame)measureFrame=requestAnimationFrame(measure);}
@@ -59,21 +97,11 @@
     const near=y>l.stageTop-l.viewport&&y<l.heroEnd+l.viewport*.2;
     if(near!==nearBook){nearBook=near;hero.classList.toggle('motion-near',near&&!reduced.matches);}
     const p=reduced.matches?0:clamp((y+l.top-l.stageTop)/l.distance);
-    if(p!==lastProgress){
+    if(!lightBook.matches&&p!==lastProgress){
       lastProgress=p;
       const e=p*p*(3-2*p);
       book.style.transform=reduced.matches?'none':`translate3d(0,${(-l.upperHeight*e).toFixed(2)}px,0)${lightBook.matches?'':` scale(${1-.08*e})`}`;
-      if(lightBook.matches){
-        // Two flat surfaces fold through the same hinge. This avoids mobile 3D
-        // flattening, per-frame mask rasterization and a second perspective layer.
-        const fold=Math.cos(Math.PI*e);
-        upper.style.transform='none';
-        front.style.transform=`scaleY(${Math.max(0,fold).toFixed(4)})`;
-        back.style.transform=`scaleY(${Math.max(0,-fold).toFixed(4)})`;
-      }else{
-        front.style.removeProperty('transform');back.style.removeProperty('transform');
-        upper.style.transform=`rotateX(${-180*e}deg)`;
-      }
+      upper.style.transform=`rotateX(${-180*e}deg)`;
       stage.dataset.closed=String(p>.98);
     }
     nav.classList.toggle('cover-hidden',l.heroEnd-y>l.viewport*.55);

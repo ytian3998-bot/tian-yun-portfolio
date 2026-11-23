@@ -1,0 +1,26 @@
+/* Muted rose and warm paper, shared by desktop and small screens. */
+:root{--paper:#f5f3f1;--rose:#e6d8d9;--wash:#f3edec;--line:#dfd2d0;--accent:#8d7377;--pencil:#8d7377;--ink:#45403e}
+.book-front{background-color:#fbf9f6;border-color:#d9c8c9}
+.book-back{background:#eadcdc;border-color:#d2bfc2;color:#7e666b;box-shadow:inset 0 -5px 0 #ddcbce}
+.book-back:before{border-color:#c5adb180}
+.book-lower{background:#f0e7e7;border-color:#d9c8c9}
+.note-two{background:#e8dcdc}.note-three{background:#eee9e3}
+.book-fold{background:linear-gradient(#e7dcdc,#c9b6b9 45%,#f0e7e7)}
+.photo-card:before{background:#dac7cb77}
+.featured,.tinted{background:#f2ebeb;border-color:#dfd2d0}
+.scroll-story{background:transparent}
+.story-page[data-story-page="0"]{background:#fbf9f6;border-color:#dfd2d0}
+.story-page[data-story-page="1"]{background:#f3eceb;border-color:#dfd2d0}
+.story-page[data-story-page="2"]{background:#eadfe0;border-color:#dfd2d0}
+.story-page-tab,.story-index{border-color:#d5c4c7}
+.contact-ticket,.ticket-main{background:#f3eceb;border-color:#d9c8c9}.ticket-stub{background:#e4d4d6}
+.section-number{color:#967d82;border-color:#cdb8bd}
+.mobile-story-nav a{background:#f3eeeb;color:#826f72}.mobile-story-nav a.current{background:#e6d8d9;color:#705e62}
+.chapter-nav a.active{background:var(--rose);color:#705e62}
+.book-hinge-trigger{position:absolute;left:0;width:1px;height:1px;pointer-events:none;visibility:hidden}
+.touch-hinge .field-book,.touch-hinge .book-upper{transition:none!important}
+.touch-hinge .book-front,.touch-hinge .book-back{transition:none!important}
+.touch-hinge .scribble-line,.touch-hinge .book-back strong{mask-image:none;-webkit-mask-image:none}
+.touch-hinge .book-collage,.touch-hinge .photo-card,.touch-hinge .project-slip{perspective:none;filter:none;box-shadow:none}
+.touch-hinge .scribble-glyph{transform:none!important}
+@media(max-width:650px){.chapter-nav{background:#fbf9f6f5}.book-back{box-shadow:none}}
