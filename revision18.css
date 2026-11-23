@@ -1,0 +1,37 @@
+@font-face{font-family:'Tian Chalk';src:url('assets/fonts/tian-chalk.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+:root{--hand:'Tian Chalk','Microsoft YaHei',sans-serif;--accent:#9c6777;--pencil:#9c6777;--rose:#f0d9df;--wash:#f8ecee;--line:#dfcdd0}
+/* Irregular lettering remains real, selectable text. The tiny transparent flecks
+   imitate dry chalk without changing body copy or adding a calligraphy face. */
+.scribble-line,.section-head h2,.book-back strong{mask-image:url('assets/chalk-grain.svg');mask-size:154px 142px;mask-repeat:repeat}
+.studio-hero.hero h1{color:#815761;letter-spacing:.035em}
+.studio-hero.hero h1 .scribble-glyph:nth-child(3n){font-size:.96em;transform:translateY(2px) rotate(-4deg) scaleX(.95)}
+.studio-hero.hero h1 .scribble-glyph:nth-child(4n){transform:translateY(-2px) rotate(3deg) scaleY(1.04)}
+.section-head h2{font-family:var(--hand);font-weight:400;color:#815761;font-size:56px;letter-spacing:.035em;line-height:1.4}
+.chalk-letter{display:inline-block;transform:translateY(var(--y)) rotate(var(--r))}
+.section-number{font-family:var(--hand);color:#b58694;font-weight:400}
+.footer-heading h2{font-family:var(--hand);font-weight:400;color:#815761}
+.book-lower{background:linear-gradient(#f9eeee,#f2dfe4);border-color:#dec5cc;color:#986f7c}
+.note-two{background:#f3dce2}.note-three{background:#f7e9e6}
+.book-upper{border-color:#dec5cc}.photo-card:before{background:#e7c9d077}
+.book-fold{background:linear-gradient(#e0c5ce,#b78e9c 45%,#f3dfe6)}
+.story-page{border-color:#dfc8cf}.story-page:nth-child(2){background:#fcf0f1}.story-page:nth-child(3){background:#f7e6e9}
+.story-page-tab{border-color:#dcbec8}.story-index{border-color:#dfc8cf}
+.featured,.tinted{background:#f7ecee;border-color:#e4cdd4}
+.scroll-story{background:transparent}.contact-ticket,.ticket-main{background:#f8eaed;border-color:#dfc6cf}.ticket-stub{background:#efd3dd}
+.studio-doodle{color:#bc95a3}.nav-marker{background:var(--rose)!important}
+.closing-book{overflow:clip;perspective:none}
+.book-stage{position:relative;height:calc(var(--book-height,680px) + var(--close-distance,450px));margin:0 auto calc(-1 * var(--book-collapse-space,280px));max-width:1100px}
+.closing-book .field-book{position:sticky;top:var(--book-top,20px);perspective:1800px;isolation:isolate;transform:translateY(var(--book-lift,0px)) scale(var(--book-scale,1));transform-origin:50% 35%;will-change:transform}
+.closing-book .book-upper{display:block;padding:0;min-height:0;transform:rotateX(var(--close-angle,0deg));transform-style:preserve-3d;transform-origin:50% 100%;z-index:5;border:0;background:none;box-shadow:none;will-change:transform}
+.book-front{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:39px 48px 30px;background-color:#fbf9f5;background-image:linear-gradient(#b59c9c13 1px,transparent 1px),linear-gradient(90deg,#b59c9c13 1px,transparent 1px);background-size:31px 31px;border:2px solid #dec5cc;border-bottom:0;border-radius:24px 24px 0 0;backface-visibility:hidden;transform:translateZ(1px)}
+.book-back{position:absolute;inset:0;background:#efd4dd;border:2px solid #cda6b4;border-radius:22px 22px 0 0;backface-visibility:hidden;transform:rotateX(180deg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#8b5c6b;font-family:var(--hand);box-shadow:inset 0 -7px 0 #e0bdca}
+.book-back:before{content:'';position:absolute;inset:20px;border:1px dashed #b9859955;border-radius:10px;pointer-events:none}
+.book-back>span{font-size:18px;letter-spacing:.1em}.book-back strong{font:400 clamp(32px,4vw,54px)/1.4 var(--hand);margin:22px 0}.book-back small{font-size:15px;line-height:1.9}.book-back i{font:12px 'Courier New',monospace;margin-top:26px;letter-spacing:.2em}
+.closing-book .book-lower{transform:none;position:relative;z-index:1;box-shadow:0 10px 24px #9c677719}
+.closing-book .book-fold{position:relative;z-index:6}
+.hero-edition{margin-top:18px}
+.nfc-context{font-size:17px;line-height:1.85;margin-top:-8px;margin-bottom:24px}
+@media(max-width:1000px){.section-head h2{font-size:47px}.book-front{padding:31px 29px 25px;gap:14px}.story-pin .case-lead{font-size:15px;line-height:1.8}.book-back strong{font-size:43px}}
+@media(max-width:650px){.section-head h2{font-size:35px}.book-front{grid-template-columns:1fr;gap:12px;padding:25px 22px 15px;border-width:1px;border-radius:18px 18px 0 0}.book-back{border-width:1px;border-radius:18px 18px 0 0}.book-back strong{font-size:36px}.book-back small{font-size:13px}.nfc-context{font-size:15px}.book-stage{--close-distance:320px}.closing-book .field-book{transform-origin:50% 30%}}
+@media(prefers-reduced-motion:reduce){.book-stage{height:auto!important;margin-bottom:0}.closing-book .field-book{position:relative;top:auto;transform:none!important}.closing-book .book-upper{transform:none!important}.book-back{display:none}.closing-book .book-lower{transform:none!important}}
+@media print{.book-stage{height:auto!important;margin-bottom:0}.closing-book .field-book{position:relative;transform:none!important;top:auto}.closing-book .book-upper{transform:none!important}.book-back{display:none}.scribble-line,.section-head h2{mask-image:none}}

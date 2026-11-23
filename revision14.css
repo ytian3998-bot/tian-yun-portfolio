@@ -1,0 +1,47 @@
+/* Compact evidence fits the existing editorial columns and chapter structure. */
+.compact-product-grid{grid-template-columns:1fr 1fr;gap:16px 12px}
+.compact-product-grid .proof-image{height:140px}
+.compact-product-grid .proof:last-child{grid-column:1/-1;max-width:62%;width:100%;justify-self:center}
+.compact-product-grid figcaption{font-size:12px;margin-top:6px}
+.compact-evidence{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:20px}
+.compact-evidence .proof-image{height:var(--preview-height,140px);background:transparent}
+.compact-evidence figcaption{font-size:13px;margin-top:7px}
+.nfc-phones{--preview-height:120px;gap:10px;margin-top:10px}
+.nfc-phones .proof-image{border:0}
+.nfc-phones figcaption{text-align:center;font-size:12px}
+.nfc-data{--preview-height:57px;margin-top:14px;gap:16px}
+.nfc-data .proof-image{border:0}
+.shoot-media{display:grid;grid-template-columns:1.2fr 1fr;gap:25px;align-items:start}
+.shoot-evidence{--preview-height:140px;grid-template-columns:1fr 1fr;margin-top:0;gap:13px}
+.shoot-evidence .proof:last-child{grid-column:1/-1}
+.shoot-evidence .proof:last-child .proof-image{height:110px}
+.shoot-evidence .proof-image{border:0}
+#shoot-case .wide-proof .proof-image{height:300px}
+#shoot-case .case-end{margin-top:15px}
+#shoot-case .pull-quote{font-size:21px;margin-bottom:0}
+.crop-frame{display:block;position:relative;overflow:hidden;width:100%;max-height:100%;flex:none}
+.proof-image .crop-frame img{max-width:none;max-height:none;position:absolute;object-fit:fill}
+.campus-data{grid-template-columns:1fr 1.36fr;--preview-height:115px;gap:20px;margin-top:18px}
+#campus-case .campus-data .proof-image{height:auto;background:transparent;border:0}
+.marked-frame{display:block;position:relative;width:100%;overflow:hidden;line-height:0}
+.marked-frame>img{width:100%;height:100%;object-fit:fill}
+.inline-highlight{position:absolute;left:0;right:0;background:#fff10069;mix-blend-mode:multiply;border-top:1px solid #cfb600;border-bottom:1px solid #cfb600;pointer-events:none}
+#archive-case .proof-image{height:130px;background:transparent;border:0}
+#archive-case .two-up>div{display:flex;flex-direction:column}
+#archive-case .proof{margin-top:auto}
+#archive-case figcaption{font-size:13px}
+#review-case{--preview-height:180px}
+#review-case .proof-image{height:180px;background:transparent;border:0}
+#review-case .two-up>div{display:grid;grid-template-columns:1fr 140px;column-gap:18px;align-content:start}
+#review-case h4{grid-column:1/-1}
+#review-case p{font-size:16px;margin-bottom:0}
+#review-case figcaption{font-size:12px}
+.brief-thumbs{display:grid;gap:10px;margin-top:auto}
+.project-trio .brief-thumbs .proof-image{height:105px}
+.brief-thumbs figcaption{font-size:12px;margin-top:5px}
+.xian-thumbs{grid-template-columns:1fr 1fr}
+.project-trio .xian-thumbs .proof-image{height:82px}
+@media(max-width:1000px){.compact-product-grid .proof-image{height:115px}.compact-product-grid .proof:last-child{max-width:75%}.compact-product-grid{gap:15px 10px}.nfc-phones{--preview-height:135px}.nfc-data{--preview-height:47px}.shoot-evidence{--preview-height:170px;gap:15px}#shoot-case .wide-proof .proof-image{height:275px}.campus-data{--preview-height:95px;gap:14px}#archive-case .proof-image{height:100px}#review-case .two-up>div{grid-template-columns:1fr}#review-case p{font-size:15px}#review-case .proof{margin-top:15px}#review-case .proof-image{height:165px}#review-case{--preview-height:165px}.project-trio .brief-thumbs .proof-image{height:85px}.project-trio .xian-thumbs .proof-image{height:75px}}
+@media(max-width:650px){.compact-product-grid .proof-image{height:115px}.compact-product-grid .proof:last-child{max-width:70%}.compact-evidence{gap:12px}.nfc-phones{--preview-height:140px;gap:9px}.nfc-data{grid-template-columns:1fr;--preview-height:43px;gap:9px}.nfc-data .proof{display:grid;grid-template-columns:1fr 90px;gap:12px;align-items:center}.nfc-data figcaption{font-size:11px;margin:0}.shoot-evidence{grid-template-columns:1fr 1fr;--preview-height:165px}.shoot-evidence .proof:last-child{grid-column:1/-1}.shoot-evidence .proof:last-child .proof-image{height:140px}#shoot-case .wide-proof .proof-image{height:220px}#shoot-case .pull-quote{font-size:18px}.campus-data{grid-template-columns:1fr;--preview-height:90px;gap:12px}#campus-case .campus-data .proof-image{height:auto;max-height:none}#campus-case .campus-data img{height:100%;width:100%}.campus-data figcaption{font-size:12px;margin-top:5px}#archive-case .proof-image{height:85px}#review-case .two-up>div{grid-template-columns:1fr 100px;gap:10px 14px}#review-case .proof{margin-top:0}#review-case .proof-image{height:150px}#review-case{--preview-height:150px}#review-case h4{margin-bottom:0}#review-case figcaption{font-size:11px}.brief-thumbs{grid-template-columns:1fr 1fr}.project-trio .brief-thumbs .proof-image{height:100px}.project-trio .xian-thumbs .proof-image{height:85px}}
+@media(min-width:651px) and (max-width:1000px){.shoot-media{gap:18px}.shoot-evidence{--preview-height:115px;gap:10px}.shoot-evidence .proof:last-child .proof-image{height:90px}.shoot-evidence figcaption{font-size:11px}#shoot-case .wide-proof .proof-image{height:260px}.nfc-phones{--preview-height:110px}}
+@media(max-width:650px){.shoot-media{grid-template-columns:1fr;gap:18px}.shoot-evidence{grid-template-columns:.8fr .8fr 1.2fr;--preview-height:110px;gap:9px}.shoot-evidence .proof:last-child{grid-column:auto}.shoot-evidence .proof:last-child .proof-image{height:110px}.shoot-evidence figcaption{font-size:10px}.nfc-phones{--preview-height:120px}#campus-case .campus-data .marked-frame{height:auto}}
