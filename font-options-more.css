@@ -1,0 +1,12 @@
+@font-face{font-family:StudyE;src:url('assets/fonts/choices/study-e.woff2');font-weight:400;font-display:swap}
+@font-face{font-family:StudyE;src:url('assets/fonts/choices/study-e-medium.woff2');font-weight:500;font-display:swap}
+@font-face{font-family:MiSans;src:url('assets/fonts/choices/MiSans-Regular.woff2');font-weight:400;font-display:swap}
+@font-face{font-family:StudyG;src:url('assets/fonts/choices/study-g.woff2');font-weight:400;font-display:swap}
+header{padding:10px 0 6px}header h1{font-size:28px;font-weight:500;line-height:1.4}
+.round-title{margin:24px 0 18px}.round-title>span{font-size:11px;color:#8d7377;letter-spacing:.14em}.round-title h2{font-size:20px;line-height:1.5;margin:6px 0}.round-title p{font-size:14px;line-height:1.7;margin:0;color:#807674}
+.new-options{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.new-options article{padding:22px 22px 20px}.new-options .label{align-items:flex-start;min-height:92px}.label>span{flex-shrink:0}.new-options .label h2{line-height:1.5}.new-options .label p{line-height:1.65;margin-top:5px}
+.sample.e,.sample.g{font-family:StudyE,sans-serif}.sample.f{font-family:MiSans,sans-serif}.sample.e h3{font-weight:500}.sample.g h3{font-family:StudyG,sans-serif;font-size:24px}.new-options .sample p{line-height:1.9}
+.new-options .sample .latin{font-size:13px;line-height:1.8}.previous{border-top:1px solid #dfd2d0;padding-top:26px;margin-top:44px}.credits{font-size:11px;color:#928582;margin-top:14px}
+@media(max-width:900px){.new-options{grid-template-columns:1fr}.new-options .label{min-height:0}.new-options article{padding:22px 24px}.new-options .sample h3{margin-top:22px}.new-options .sample p{max-width:42em}}
+@media(max-width:650px){header h1{font-size:24px}.new-options article{padding:20px}.round-title p{font-size:13px}}
