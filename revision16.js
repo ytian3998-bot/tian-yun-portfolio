@@ -19,34 +19,15 @@
     });
   }
 
-  let heroFrame = 0;
-  function bookScroll() {
-    heroFrame = 0;
-    const heroRect = hero?.getBoundingClientRect();
-    document.querySelector('.chapter-nav').classList.toggle('cover-hidden', !!heroRect && heroRect.bottom > innerHeight * .55);
-    if (reduced.matches || !hero || hero.classList.contains('closing-book')) {
-      upper?.style.removeProperty('--book-angle');
-      lower?.style.removeProperty('--lower-angle');
-      return;
-    }
-    const rect = hero.getBoundingClientRect();
-    const amount = Math.min(1, Math.max(0, -rect.top / rect.height));
-    upper.style.setProperty('--book-angle', `${-amount * 12}deg`);
-    lower.style.setProperty('--lower-angle', `${-5 + amount * 18}deg`);
-  }
-  addEventListener('scroll', () => { if (!heroFrame) heroFrame = requestAnimationFrame(bookScroll); }, { passive: true });
-  addEventListener('resize', bookScroll);
-  bookScroll();
-
   const revealItems = document.querySelectorAll('.section-head, .capabilities>article, .case-top, .proof, .footer-heading');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(({ target, isIntersecting }) => {
         if (!isIntersecting) return;
         target.classList.add('is-read');
-        if (target.getBoundingClientRect().top > 20) {
+        if (target.getBoundingClientRect().top > 20 && !target.closest('.story-page') && ((innerWidth > 650 && finePointer.matches) || !target.matches('.proof'))) {
           const isPaper = target.matches('.proof');
-          animate(target, [{ opacity: .12, transform: `translateY(${isPaper ? 21 : 16}px) ${isPaper ? 'rotateX(5deg)' : ''}` }, { opacity: 1, transform: 'none' }], { duration: isPaper ? 650 : 750, easing: 'cubic-bezier(.2,.7,.2,1)' });
+          animate(target, [{ opacity: .12, transform: `translateY(${isPaper ? 21 : 16}px) ${isPaper ? 'rotateX(5deg)' : ''}` }, { opacity: 1, transform: 'none' }], { duration: innerWidth > 650 && finePointer.matches ? (isPaper ? 650 : 750) : 280, easing: 'cubic-bezier(.2,.7,.2,1)' });
         }
         observer.unobserve(target);
       });
@@ -92,7 +73,7 @@
   const navObserver = new MutationObserver(updateMarker);
   nav.querySelectorAll('a').forEach(a => navObserver.observe(a, { attributes: true, attributeFilter: ['class'] }));
   addEventListener('resize', updateMarker);
-  document.fonts?.ready.then(() => { updateMarker(); bookScroll(); });
+  document.fonts?.ready.then(() => { updateMarker(); });
   updateMarker();
 
   document.querySelector('#gallery-image').addEventListener('load', e => {
@@ -159,6 +140,5 @@
   });
   reduced.addEventListener('change', () => {
     if (reduced.matches) document.getAnimations().forEach(animation => animation.cancel());
-    bookScroll();
   });
 })();

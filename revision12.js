@@ -43,12 +43,4 @@
   function resumeTab(key){const r=resumes[key];document.querySelector('#resume-image').src=r.image;document.querySelector('#resume-pdf').href=r.pdf;document.querySelector('#resume-docx').href=r.docx;document.querySelectorAll('[data-resume-tab]').forEach(b=>b.classList.toggle('active',b.dataset.resumeTab===key))}
   document.querySelectorAll('[data-resume]').forEach(button=>button.addEventListener('click',()=>{opener=button;resumeTab(button.dataset.resume);resume.showModal();document.body.classList.add('dialog-open')}));
   document.querySelectorAll('[data-resume-tab]').forEach(button=>button.addEventListener('click',()=>resumeTab(button.dataset.resumeTab)));
-  const sections=[...document.querySelectorAll('section.section')],nav=[...document.querySelectorAll('.chapter-nav a')];
-  let ticking=false;
-  function progress(){
-    ticking=false;const max=document.documentElement.scrollHeight-window.innerHeight;document.querySelector('.progress').style.width=(max>0?window.scrollY/max*100:0)+'%';
-    let active=sections[0];for(const s of sections){if(s.getBoundingClientRect().top<window.innerHeight*.4)active=s;}
-    nav.forEach(a=>{const yes=a.hash==='#'+active.id;a.classList.toggle('active',yes);if(yes)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')});
-  }
-  window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(progress);ticking=true}},{passive:true});progress();
 })();
