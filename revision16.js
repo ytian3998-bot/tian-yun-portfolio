@@ -19,15 +19,18 @@
     });
   }
 
-  const revealItems = document.querySelectorAll('.section-head, .capabilities>article, .case-top, .proof, .footer-heading');
+  const revealItems = document.querySelectorAll('.section-head, .capabilities>article, .case-top, .case>h3, .case>p, .two-up>article>h4, .two-up>article>p, .two-up>div>h4, .two-up>div>p, .story-page article, .proof, .footer-heading');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(({ target, isIntersecting }) => {
         if (!isIntersecting) return;
         target.classList.add('is-read');
-        if (target.getBoundingClientRect().top > 20 && !target.closest('.story-page') && ((innerWidth > 650 && finePointer.matches) || !target.matches('.proof'))) {
+        if (target.getBoundingClientRect().top > 20) {
           const isPaper = target.matches('.proof');
-          animate(target, [{ opacity: .12, transform: `translateY(${isPaper ? 21 : 16}px) ${isPaper ? 'rotateX(5deg)' : ''}` }, { opacity: 1, transform: 'none' }], { duration: innerWidth > 650 && finePointer.matches ? (isPaper ? 650 : 750) : 280, easing: 'cubic-bezier(.2,.7,.2,1)' });
+          const touch = innerWidth <= 650 || !finePointer.matches;
+          const start = isPaper ? 'translate3d(0,26px,0) scale(.97)' : 'translate3d(0,22px,0)';
+          const motion = animate(target, [{ opacity: .08, transform: start }, { opacity: 1, transform: 'none' }], { duration: touch ? (isPaper ? 460 : 420) : (isPaper ? 650 : 650), easing: 'cubic-bezier(.2,.7,.2,1)' });
+          target.dataset.entryMotion = motion ? (isPaper ? 'image' : 'text') : 'reduced';
         }
         observer.unobserve(target);
       });
@@ -85,7 +88,10 @@
   const updateMail = () => {
     const selected = choices.filter(el => el.checked).map(el => el.value);
     mail.href = 'mailto:ytian3998@gmail.com' + (selected.length ? `?subject=${encodeURIComponent('想和田韵聊聊：' + selected.join('、'))}` : '');
-    mail.textContent = selected.length ? `选好了，聊聊吧 ↗` : '那就聊聊吧 ↗';
+    mail.replaceChildren(document.createTextNode(selected.length ? '选好了，聊聊吧 ' : '那就聊聊吧 '));
+    const arrow=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    arrow.setAttribute('class','ui-arrow');arrow.setAttribute('viewBox','0 0 24 24');arrow.setAttribute('aria-hidden','true');
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d','M5 19 19 5M6 5h13v13');arrow.append(path);mail.append(arrow);
   };
   choices.forEach(el => el.addEventListener('change', updateMail));
 

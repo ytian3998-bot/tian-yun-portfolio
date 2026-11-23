@@ -1,0 +1,18 @@
+@font-face{font-family:'Tian Sans';src:url('assets/fonts/tian-sans-regular-r24.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Tian Sans';src:url('assets/fonts/tian-sans-medium-r24.woff2') format('woff2');font-style:normal;font-weight:500 700;font-display:swap}
+@font-face{font-family:'Tian Sans Text';src:url('assets/fonts/tian-sans-regular-r24.woff2') format('woff2');font-style:normal;font-weight:400 700;font-display:swap}
+:root{--text:'Tian Sans','Tian Sans Text',-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif}
+.studio-hero{--hand:var(--text)}
+body{font-weight:400}
+h1,h2,h3,h4,.case-top h3,.profile-note h3,.section-head h2,.footer-heading h2,.ticket-main h3,.studio-hero.hero h1,.book-back strong{font-family:var(--text);font-weight:500}
+.section-head h2{letter-spacing:.015em}
+.studio-hero.hero h1{letter-spacing:0}
+.scribble-line,.book-back strong{mask-image:none}
+.studio-hero.hero h1 span.scribble-glyph,.studio-hero.hero h1 .scribble-glyph:nth-child(3n),.studio-hero.hero h1 .scribble-glyph:nth-child(4n){transform:none;font-size:1em}
+.metrics strong,.project-result b{font-weight:400;font-variant-numeric:lining-nums proportional-nums}
+.ui-arrow{display:inline-block;width:.95em;height:.95em;vertical-align:-.09em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.hero h1 .ui-arrow{display:inline-block}.zoom-hint .ui-arrow{width:21px;height:21px;vertical-align:middle}
+@media(max-width:650px){
+  .case-lead,.two-up p,.story-pin .case-lead,.story-page article>p{font-size:16px;line-height:1.85}
+  .capabilities p,.strengths p{font-size:15px;line-height:1.8}
+}

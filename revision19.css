@@ -1,5 +1,4 @@
 @font-face{font-family:'Tian Hand';src:url('assets/fonts/tian-hand-r19.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'Tian Rounded';src:url('assets/fonts/tian-rounded-r21.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
 :root{--text:'Tian Rounded',-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif;--hand:var(--text);--serif:var(--text);--latin:var(--text);--rose:#ffe8ee;--wash:#fff3f5;--line:#ead4da;--ink:#473b3c;--accent:#9b6073;--pencil:#9b6073}
 .studio-hero{--hand:'Tian Hand','Microsoft YaHei',sans-serif}
 body,button,input,figcaption{font-family:var(--hand)}

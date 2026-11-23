@@ -20,7 +20,11 @@
     document.querySelector('#gallery-original').href=item.src;
     document.querySelector('#gallery-prev').disabled=index===0;document.querySelector('#gallery-next').disabled=index===g.items.length-1;
     [...thumbs.children].forEach((button,i)=>{button.classList.toggle('active',i===index);button.setAttribute('aria-current',i===index?'true':'false')});
-    const id=++loadId;img.onload=()=>{if(id===loadId){fit();stage.scrollTo(0,0)}};img.src=item.src;
+    const id=++loadId;img.onload=()=>{if(id===loadId){fit();stage.scrollTo(0,0)}};img.src=item.preview||item.src;
+    if(item.preview){
+      const original=new Image();original.decoding='async';
+      original.onload=()=>{if(id===loadId&&dlg.open)img.src=item.src;};original.src=item.src;
+    }
     if(img.complete)requestAnimationFrame(fit);
   }
   function open(key,page,button){
