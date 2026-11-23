@@ -39,8 +39,5 @@
     dialog.addEventListener('close',()=>{document.body.classList.remove('dialog-open');opener?.focus({preventScroll:true})});
   });
   const resume=document.querySelector('#resume-dialog');
-  const resumes={product:{image:'assets/resume-preview.png',pdf:'assets/tian-yun-resume.pdf',docx:'assets/田韵_AI产品运营实习简历.docx'},marketing:{image:'assets/resume-marketing-preview.png',pdf:'assets/tian-marketing-resume.pdf',docx:'assets/田韵_内容营销实习简历.docx'}};
-  function resumeTab(key){const r=resumes[key];document.querySelector('#resume-image').src=r.image;document.querySelector('#resume-pdf').href=r.pdf;document.querySelector('#resume-docx').href=r.docx;document.querySelectorAll('[data-resume-tab]').forEach(b=>b.classList.toggle('active',b.dataset.resumeTab===key))}
-  document.querySelectorAll('[data-resume]').forEach(button=>button.addEventListener('click',()=>{opener=button;resumeTab(button.dataset.resume);resume.showModal();document.body.classList.add('dialog-open')}));
-  document.querySelectorAll('[data-resume-tab]').forEach(button=>button.addEventListener('click',()=>resumeTab(button.dataset.resumeTab)));
+  document.querySelectorAll('[data-resume]').forEach(button=>button.addEventListener('click',()=>{opener=button;resume.showModal();document.body.classList.add('dialog-open')}));
 })();
